@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.coderslab.final_project.entity.Exercise;
+import pl.coderslab.final_project.entity.MusclePart;
 import pl.coderslab.final_project.repository.ExerciseRepository;
 
 import java.util.List;
@@ -30,6 +31,10 @@ public class ExerciseService {
 
     public void deleteById(Long id){
         exerciseRepository.deleteById(id);
+    }
+
+    public List<Exercise> findExercisesByMusclePart(MusclePart musclePart){
+        return exerciseRepository.findExercisesByMusclePartsOrderByPopularityDesc(musclePart);
     }
 
 }

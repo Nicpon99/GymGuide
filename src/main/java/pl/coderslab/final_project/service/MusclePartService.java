@@ -32,4 +32,8 @@ public class MusclePartService {
         musclePartRepository.deleteById(id);
     }
 
+    public List<MusclePart> findAllSorted(){
+        return musclePartRepository.findMusclePartsByOrderByNameAsc();
+    }
+
 }
