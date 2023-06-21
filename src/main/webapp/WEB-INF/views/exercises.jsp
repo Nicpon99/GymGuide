@@ -21,7 +21,7 @@
         <c:forEach items="${exercises}" var="exercise">
             <tr>
                 <td>
-                    ${exercise.key}
+                    ${exercise.key.name}
                 </td>
                 <td>
                     <ul>
@@ -31,7 +31,7 @@
                     </ul>
                 </td>
                 <td>
-                    <a href="">Zobacz opis</a>
+                    <a href="http://localhost:8080/exercises/description/${exercise.key.id}">Zobacz opis</a>
                 </td>
                 <td>
                     <a href="">Dodaj do ulubionych</a>

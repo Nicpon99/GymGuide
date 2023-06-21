@@ -30,12 +30,12 @@ public class ExerciseController {
         if (musclePart != null){
             List<Exercise> exercises = exerciseService.findExercisesByMusclePart(musclePart);
 
-            Map<String, List<String>> exerciseMap = new HashMap<>();
+            Map<Exercise, List<String>> exerciseMap = new HashMap<>();
 
             for (Exercise exercise : exercises) {
                 String muscles = exercise.getMuscles();
                 String[] musclesArray = muscles.split(", ");
-                exerciseMap.put(exercise.getName(), Arrays.asList(musclesArray));
+                exerciseMap.put(exercise, Arrays.asList(musclesArray));
             }
 
             model.addAttribute("musclePart", musclePart);
@@ -45,4 +45,25 @@ public class ExerciseController {
             return "redirect:/";
         }
     }
+
+    @GetMapping("/exercises/description/{id}")
+    public String getExerciseDescription(@PathVariable("id") Long id, Model model){
+        Exercise exercise =  exerciseService.findById(id).orElse(null);
+        if (exercise != null){
+            String muscles = exercise.getMuscles();
+            List<String> musclesList = List.of(muscles.split(", "));
+            model.addAttribute("muscles", musclesList);
+
+            String description = exercise.getDescription();
+            List<String> descriptionList = List.of(description.split("\\. "));
+            model.addAttribute("description", descriptionList);
+
+            model.addAttribute("exercise", exercise);
+
+            return "description";
+        } else {
+            return "redirect:/exercises/" + id;
+        }
+    }
+
 }
