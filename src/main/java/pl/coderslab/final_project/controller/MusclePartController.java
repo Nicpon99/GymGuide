@@ -7,10 +7,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import pl.coderslab.final_project.service.MusclePartService;
 
 @Controller
-@AllArgsConstructor
 public class MusclePartController {
 
     private MusclePartService musclePartService;
+
+    public MusclePartController(MusclePartService musclePartService) {
+        this.musclePartService = musclePartService;
+    }
 
     @GetMapping("/")
     public String homepage(Model model){
