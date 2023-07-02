@@ -18,6 +18,11 @@
             </td>
             </sec:authorize>
             <sec:authorize access="isAuthenticated()">
+                <td>
+                    <a href="http://localhost:8080/user/profile">Mój profil</a>
+                </td>
+            </sec:authorize>
+            <sec:authorize access="isAuthenticated()">
             <td>
                 <a href="http://localhost:8080/logout">Wyloguj się</a>
             </td>
