@@ -34,7 +34,7 @@
                     <a href="http://localhost:8080/exercises/description/${exercise.key.id}">Zobacz opis</a>
                 </td>
                 <td>
-                    <a href="">Dodaj do ulubionych</a>
+                    <a href="http://localhost:8080/exercises/like/${muscleId}/${exercise.key.id}">Dodaj do ulubionych</a>
                 </td>
             </tr>
         </c:forEach>

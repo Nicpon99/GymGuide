@@ -54,7 +54,7 @@
     </tr>
     <tr>
         <td>
-            <a href="">DODAJ DO ULUBIONYCH</a>
+            <a href="http://localhost:8080/exercises/description/like/${exercise.id}">DODAJ DO ULUBIONYCH</a>
         </td>
     </tr>
 </table>

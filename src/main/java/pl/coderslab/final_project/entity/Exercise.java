@@ -25,4 +25,6 @@ public class Exercise {
     private Integer popularity = 0;
     @ManyToMany
     private List<MusclePart> muscleParts;
+    @ManyToMany(mappedBy = "exercises")
+    private List<User> users;
 }

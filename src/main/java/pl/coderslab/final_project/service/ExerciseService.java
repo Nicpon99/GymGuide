@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.coderslab.final_project.entity.Exercise;
 import pl.coderslab.final_project.entity.MusclePart;
+import pl.coderslab.final_project.entity.User;
 import pl.coderslab.final_project.repository.ExerciseRepository;
 
 import java.util.List;
@@ -35,6 +36,18 @@ public class ExerciseService {
 
     public List<Exercise> findExercisesByMusclePart(MusclePart musclePart){
         return exerciseRepository.findExercisesByMusclePartsOrderByPopularityDesc(musclePart);
+    }
+
+    public void increasePopularity(Long id){
+        exerciseRepository.increasePopularity(id);
+    }
+
+    public void decreasePopularity(Long id){
+        exerciseRepository.decreasePopularity(id);
+    }
+
+    public List<Exercise> findExercisesByUser(User user){
+        return exerciseRepository.findExercisesByUsersOrderByNameAsc(user);
     }
 
 }

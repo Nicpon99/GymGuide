@@ -11,6 +11,9 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.final_project.entity.User;
+import pl.coderslab.final_project.entity.UserExercise;
+import pl.coderslab.final_project.service.ExerciseService;
+import pl.coderslab.final_project.service.UserExerciseService;
 import pl.coderslab.final_project.service.UserService;
 
 import java.security.Principal;
@@ -23,8 +26,14 @@ public class UserController {
 
     private UserService userService;
 
-    public UserController(UserService userService) {
+    private ExerciseService exerciseService;
+
+    private UserExerciseService userExerciseService;
+
+    public UserController(UserService userService, ExerciseService exerciseService, UserExerciseService userExerciseService) {
         this.userService = userService;
+        this.exerciseService = exerciseService;
+        this.userExerciseService = userExerciseService;
     }
 
     @GetMapping("/register")
@@ -115,6 +124,32 @@ public class UserController {
         return "redirect:/user/profile";
     }
 
+    @GetMapping("/user/favorite")
+    public String getFavoriteExercises(Model model, Principal principal) {
+        User user = userService.findByUserName(principal.getName()).orElse(null);
+        if (user != null) {
+            model.addAttribute("exercises", exerciseService.findExercisesByUser(user));
+            return "favorite";
+        } else {
+            return "error";
+        }
+    }
+
+    @GetMapping("/user/favorite/delete/{id}")
+    public String deleteFromFavorite(@PathVariable("id") Long id, Principal principal){
+        User user = userService.findByUserName(principal.getName()).orElse(null);
+        if (user != null){
+            UserExercise userExercise = userExerciseService.findByExerciseIdAndUserId(id, user.getId());
+            userExerciseService.deleteById(userExercise.getId());
+            exerciseService.decreasePopularity(id);
+            return "redirect:/user/favorite";
+        } else {
+            return "error";
+        }
+    }
+
+
+
     @GetMapping("/login")
     public String login(){
         return "login";
@@ -126,5 +161,6 @@ public class UserController {
     public String logout(){
         return "logout";
     }
+
 
 }

@@ -15,7 +15,7 @@
       <a href="">Stwórz trening</a>
     </li>
     <li>
-      <a href="">Ulubione ćwiczenia</a>
+      <a href="http://localhost:8080/user/favorite">Ulubione ćwiczenia</a>
     </li>
   </ul>
 </div>
