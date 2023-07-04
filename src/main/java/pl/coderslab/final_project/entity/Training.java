@@ -1,6 +1,7 @@
 package pl.coderslab.final_project.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -17,7 +18,9 @@ public class Training {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotEmpty(message = "Nazwa nie może być pusta")
     private String name;
+    @NotEmpty(message = "Opis nie może być pusty")
     private String description;
     private LocalDateTime created;
     @ManyToOne

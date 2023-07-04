@@ -7,6 +7,7 @@ table {
     width: 90%;
     border: 4px solid #000000; /* Grubsze krawędzie zewnętrzne */
     cursor: pointer; /* Zmiana kursora na wskazujący */
+    position: relative;
 }
 
 td, th {

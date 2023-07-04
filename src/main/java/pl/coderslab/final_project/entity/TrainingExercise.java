@@ -17,5 +17,6 @@ public class TrainingExercise {
     private Long exercises_id;
     private Long trainings_id;
     private Integer series;
+    private Integer sequence;
 
 }

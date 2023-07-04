@@ -1,9 +1,7 @@
 package pl.coderslab.final_project.controller;
 
-import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -13,12 +11,12 @@ import org.springframework.web.bind.annotation.*;
 import pl.coderslab.final_project.entity.User;
 import pl.coderslab.final_project.entity.UserExercise;
 import pl.coderslab.final_project.service.ExerciseService;
+import pl.coderslab.final_project.service.TrainingService;
 import pl.coderslab.final_project.service.UserExerciseService;
 import pl.coderslab.final_project.service.UserService;
 
 import java.security.Principal;
 import java.util.Collection;
-import java.util.concurrent.RecursiveTask;
 
 
 @Controller
@@ -30,10 +28,13 @@ public class UserController {
 
     private UserExerciseService userExerciseService;
 
-    public UserController(UserService userService, ExerciseService exerciseService, UserExerciseService userExerciseService) {
+    private TrainingService trainingService;
+
+    public UserController(UserService userService, ExerciseService exerciseService, UserExerciseService userExerciseService, TrainingService trainingService) {
         this.userService = userService;
         this.exerciseService = exerciseService;
         this.userExerciseService = userExerciseService;
+        this.trainingService = trainingService;
     }
 
     @GetMapping("/register")
@@ -55,6 +56,7 @@ public class UserController {
     public String getUserAccount(Model model, Principal principal){
         User user = userService.findByUserName(principal.getName()).orElse(null);
         if (user != null){
+            model.addAttribute("trainings", trainingService.findByUser(user));
             return "profile";
         }
         return "error";

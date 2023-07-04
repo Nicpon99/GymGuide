@@ -12,7 +12,7 @@
     <a href="http://localhost:8080/user/edit/password">Zmień hasło</a>
     </li>
     <li>
-      <a href="">Stwórz trening</a>
+      <a href="http://localhost:8080/training/create">Stwórz trening</a>
     </li>
     <li>
       <a href="http://localhost:8080/user/favorite">Ulubione ćwiczenia</a>

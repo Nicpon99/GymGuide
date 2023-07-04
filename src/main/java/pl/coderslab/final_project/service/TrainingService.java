@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.coderslab.final_project.entity.Training;
+import pl.coderslab.final_project.entity.User;
 import pl.coderslab.final_project.repository.TrainingRepository;
 
 import java.util.List;
@@ -30,6 +31,10 @@ public class TrainingService {
 
     public void deleteById(Long id){
         trainingRepository.deleteById(id);
+    }
+
+    public List<Training> findByUser(User user){
+        return trainingRepository.findTrainingsByUserOrderByCreated(user);
     }
 
 }

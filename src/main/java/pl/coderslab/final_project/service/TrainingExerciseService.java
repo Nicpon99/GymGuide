@@ -32,4 +32,12 @@ public class TrainingExerciseService {
         trainingExerciseRepository.deleteById(id);
     }
 
+    public void saveSeriesAndSequence(Integer series, Integer sequence, Long id){
+        trainingExerciseRepository.saveSeriesAndSequence(series, sequence, id);
+    }
+
+    public List<TrainingExercise> findByTrainingId(Long id){
+        return trainingExerciseRepository.findByTrainingId(id);
+    }
+
 }

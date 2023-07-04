@@ -27,4 +27,6 @@ public class Exercise {
     private List<MusclePart> muscleParts;
     @ManyToMany(mappedBy = "exercises")
     private List<User> users;
+    @ManyToMany(mappedBy = "exercises")
+    private List<Training> trainings;
 }
