@@ -23,21 +23,29 @@
                 <td>
                     ${exercise.key.name}
                 </td>
-                <td>
-                    <ul>
-                        <c:forEach items="${exercise.value}" var="muscle">
-                            <li>${muscle}</li>
-                        </c:forEach>
-                    </ul>
-                </td>
+                <c:forEach items="${exercise.value}" var="inner">
+                    <td>
+                        <ul>
+
+                            <c:forEach items="${inner.key}" var="muscle">
+                                <li>${muscle}</li>
+                            </c:forEach>
+
+                        </ul>
+                    </td>
+                    <td style="display: none">
+                        <div id="like">${inner.value}</div>
+                    </td>
+                </c:forEach>
                 <td>
                     <a href="http://localhost:8080/exercises/description/${exercise.key.id}">Zobacz opis</a>
                 </td>
                 <td>
-                    <a href="http://localhost:8080/exercises/like/${muscleId}/${exercise.key.id}">Dodaj do ulubionych</a>
+                    <a href="http://localhost:8080/exercises/like/${muscleId}/${exercise.key.id}" id="likeButton"></a>
                 </td>
             </tr>
         </c:forEach>
     </table>
+<script src="/js/check-like.js" ></script>
 </body>
 </html>

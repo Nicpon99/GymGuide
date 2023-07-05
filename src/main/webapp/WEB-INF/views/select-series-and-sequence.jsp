@@ -32,14 +32,12 @@
                                 ${item.value}
                         </td>
                         <td>
-                            <input type="number" name="series" value="4"/>
+                            <input type="number" name="series" value="4" id="series"/>
                         </td>
                         <td>
                             <select name="sequence">
-
                                 <c:forEach begin="1" end="${mapLength}" var="sample">
                                     <option value="${sample}">${sample}</option>
-
                                 </c:forEach>
                             </select>
                         </td>
@@ -50,12 +48,22 @@
                 </c:forEach>
                 <tr>
                     <td colspan="3">
+                        <div style="display: block" id="button">
                         <button type="submit">Zapisz trening</button>
+                        </div>
+                        <div style="display: none" id="error-series" class="error">
+                            Żadna wartość "Ilość serii" nie może być pusta
+                        </div>
+                        <div style="display: none" id="error-sequence" class="error">
+                            Wartości "Kolejność wykonywania" muszą być różne
+                        </div>
                     </td>
                 </tr>
             </table>
         </form>
     </div>
 </div>
+<script src="/js/check-series.js" ></script>
+<script src="/js/check-sequence.js" ></script>
 </body>
 </html>

@@ -36,4 +36,8 @@ public class UserExerciseService {
         return userExerciseRepository.findByExerciseAndUser(exerciseId, UserId);
     }
 
+    public Optional<UserExercise> findByExerciseId(Long exerciseId){
+        return userExerciseRepository.findByExerciseId(exerciseId);
+    }
+
 }

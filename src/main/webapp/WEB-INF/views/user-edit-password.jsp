@@ -11,9 +11,6 @@
 <div class="container">
     <%@include file="left-menu.jsp" %>
     <div class="content">
-
-        <h1>Podaj nowe hasło</h1>
-
         <form:form method="POST" modelAttribute="user">
             <form:input path="id" value="${user.id}" type="hidden"/>
             <form:input path="username" value="${user.username}" type="hidden"/>
@@ -21,12 +18,34 @@
             <table>
                 <tr>
                     <td>
-                        <div><form:input path="password" type="password"/></div>
+                        <div>Podaj nowe hasło</div>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <div><button type="submit">SAVE</button> </div>
+                        <div><form:input path="password" type="password" id="pass1"/></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div>
+                            Powtórz hasło
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="password" id="pass2"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div style="display: block" id="button">
+                            <button type="submit">Zapisz</button>
+                        </div>
+                        <div id="error-message" style="display: none" class="error">
+                            Wpisane hasła nie są takie same
+                        </div>
                     </td>
                 </tr>
             </table>
@@ -34,5 +53,6 @@
         </form:form>
     </div>
 </div>
+<script src="/js/check-password.js" ></script>
 </body>
 </html>

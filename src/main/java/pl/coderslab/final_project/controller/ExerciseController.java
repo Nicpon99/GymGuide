@@ -37,12 +37,24 @@ public class ExerciseController {
         if (musclePart != null){
             List<Exercise> exercises = exerciseService.findExercisesByMusclePart(musclePart);
 
-            LinkedHashMap<Exercise, List<String>> exerciseMap = new LinkedHashMap<>();
+            LinkedHashMap<Exercise, LinkedHashMap<List<String>, String>> exerciseMap = new LinkedHashMap<>();
 
             for (Exercise exercise : exercises) {
+                LinkedHashMap<List<String>, String> musclesWithLikes = new LinkedHashMap<>();
                 String muscles = exercise.getMuscles();
                 String[] musclesArray = muscles.split(", ");
-                exerciseMap.put(exercise, Arrays.asList(musclesArray));
+
+                String like = "";
+                UserExercise userExercise = userExerciseService.findByExerciseId(exercise.getId()).orElse(null);
+                if (userExercise == null){
+                    like = "false";
+                } else {
+                    like = "true";
+                }
+
+                musclesWithLikes.put(Arrays.asList(musclesArray), like);
+
+                exerciseMap.put(exercise, musclesWithLikes);
             }
 
             model.addAttribute("musclePart", musclePart);
@@ -64,9 +76,20 @@ public class ExerciseController {
 
             String description = exercise.getDescription();
             List<String> descriptionList = List.of(description.split("\\. "));
+
+            String like = "";
+            UserExercise userExercise = userExerciseService.findByExerciseId(exercise.getId()).orElse(null);
+            if (userExercise == null){
+                like = "false";
+            } else {
+                like = "true";
+            }
+
             model.addAttribute("description", descriptionList);
 
             model.addAttribute("exercise", exercise);
+
+            model.addAttribute("like", like);
 
             return "description";
         } else {

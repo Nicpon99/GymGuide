@@ -21,7 +21,7 @@
                         <a href="http://localhost:8080/exercises/description/${exercise.id}">Zobacz opis</a>
                     </td>
                     <td>
-                        <a href="http://localhost:8080/user/favorite/delete/${exercise.id}">Usuń z ulubionych</a>
+                        <a href="http://localhost:8080/user/favorite/delete/${exercise.id}" style="color: red">Usuń z ulubionych</a>
                     </td>
                 </tr>
             </c:forEach>

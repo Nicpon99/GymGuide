@@ -54,12 +54,15 @@
     </tr>
     <tr>
         <td>
-            <a href="http://localhost:8080/exercises/description/like/${exercise.id}">DODAJ DO ULUBIONYCH</a>
+            <div id="like">${like}</div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a href="http://localhost:8080/exercises/description/like/${exercise.id}" id="likeButton"></a>
         </td>
     </tr>
 </table>
-
-
-
+<script src="/js/check-like-description.js" ></script>
 </body>
 </html>
