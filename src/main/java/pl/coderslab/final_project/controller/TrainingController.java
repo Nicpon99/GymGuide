@@ -89,9 +89,6 @@ public class TrainingController {
             }
         }
 
-        for (Map.Entry<TrainingExercise, String> entry : trainingWithExercises.entrySet()){
-            System.out.println(entry.getKey() + "    ----->  " + entry.getValue());
-        }
 
         model.addAttribute("trainingWithExercises", trainingWithExercises);
         model.addAttribute("mapLength", trainingWithExercises.size());
@@ -102,7 +99,6 @@ public class TrainingController {
     public String saveTraining(@RequestParam("trainingExerciseIds") Long[] trainingExerciseIds,
                                @RequestParam("series") String[] series, @RequestParam("sequence") String[] sequence){
 
-        System.out.println(Arrays.toString(trainingExerciseIds));
 
         for (int i = 0; i < trainingExerciseIds.length; i++){
             trainingExerciseService.saveSeriesAndSequence(Integer.parseInt(series[i]), Integer.parseInt(sequence[i]), trainingExerciseIds[i]);
