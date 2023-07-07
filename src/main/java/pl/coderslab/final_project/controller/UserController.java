@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.final_project.entity.User;
 import pl.coderslab.final_project.entity.UserExercise;
+import pl.coderslab.final_project.exceptions.ValidationException;
 import pl.coderslab.final_project.service.ExerciseService;
 import pl.coderslab.final_project.service.TrainingService;
 import pl.coderslab.final_project.service.UserExerciseService;
@@ -17,6 +18,7 @@ import pl.coderslab.final_project.service.UserService;
 
 import java.security.Principal;
 import java.util.Collection;
+import java.util.List;
 
 
 @Controller
@@ -44,11 +46,18 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public String saveUser(@Valid User user, BindingResult result){
+    public String saveUser(@Valid User user, BindingResult result, Model model){
         if (result.hasErrors()){
             return "registration";
         }
-        userService.saveUser(user);
+        try {
+            userService.registerUser(user);
+        } catch (ValidationException e){
+            List<String> validationErrors = e.getValidationErrors();
+            model.addAttribute("validation", validationErrors);
+            return "registration";
+        }
+
         return "redirect:/login";
     }
 
@@ -85,23 +94,29 @@ public class UserController {
     }
 
     @PostMapping("/user/edit")
-    public String updateUser(@Valid User user,  BindingResult result){
+    public String updateUser(@Valid User user,  BindingResult result, Model model){
         if (result.hasErrors()){
             return "user-edit";
         }
-        userService.editUser(user);
-        User u = userService.findByUserName(user.getUsername()).orElse(null);
-        if (u != null){
-            Collection<SimpleGrantedAuthority> nowAuthorities =
-                    (Collection<SimpleGrantedAuthority>)SecurityContextHolder.getContext()
-                            .getAuthentication()
-                            .getAuthorities();
-            UsernamePasswordAuthenticationToken authentication =
-                    new UsernamePasswordAuthenticationToken(u.getUsername(), u.getPassword(), nowAuthorities);
-            SecurityContextHolder.getContext().setAuthentication(authentication);
-            return "redirect:/user/data";
-        } else {
-            return "error";
+        try {
+            userService.editUniqueUser(user);
+            User u = userService.findByUserName(user.getUsername()).orElse(null);
+            if (u != null){
+                Collection<SimpleGrantedAuthority> nowAuthorities =
+                        (Collection<SimpleGrantedAuthority>)SecurityContextHolder.getContext()
+                                .getAuthentication()
+                                .getAuthorities();
+                UsernamePasswordAuthenticationToken authentication =
+                        new UsernamePasswordAuthenticationToken(u.getUsername(), u.getPassword(), nowAuthorities);
+                SecurityContextHolder.getContext().setAuthentication(authentication);
+                return "redirect:/user/data";
+            } else {
+                return "error";
+            }
+        } catch (ValidationException e){
+            List<String> validationErrors = e.getValidationErrors();
+            model.addAttribute("validation", validationErrors);
+            return "user-edit";
         }
     }
 

@@ -31,7 +31,7 @@
                 <tr>
 
                     <td>
-                        <div><form:textarea path="description" rows="3" cols="20"/></div>
+                        <div><form:textarea path="description" rows="5" cols="40"/></div>
                     </td>
                 </tr>
                 <tr>

@@ -20,14 +20,14 @@ public class User {
     private Long id;
     @Column(nullable = false, unique = true, length = 60)
 
-    @Size(min = 4, max = 25, message = "Wartość \"USERNAME\" musi zawierać od 4 do 25 znaków")
+    @Size(min = 4, max = 25, message = "Nazwa użytkownika musi zawierać od 4 do 25 znaków")
     private String username;
 
-    @NotEmpty(message = "Wartość \"EMAIL\" nie może być pusta")
+    @NotEmpty(message = "Wartość \"e-mail\" nie może być pusta")
     @Email(message = "Nieprawidłowy format adresu e-mail")
     private String email;
 
-    @Pattern(regexp = "^(?=.*[A-Z])(?=.*[0-9]).{6,}$", message = "Wartość \"PASSWORD\" musi zawierać przynajmniej jedną wielką literę, przynajmniej jedną cyfrę i składać się z co najmniej 6 znaków")
+    @Pattern(regexp = "^(?=.*[A-Z])(?=.*[0-9]).{6,}$", message = "Hasło musi zawierać przynajmniej jedną wielką literę, przynajmniej jedną cyfrę i składać się z co najmniej 6 znaków")
     private String password;
 
     private int enabled;

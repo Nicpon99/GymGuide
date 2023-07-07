@@ -6,16 +6,16 @@
       <a href="http://localhost:8080/user/profile">Moje treningi</a>
     </li>
     <li>
-      <a href="http://localhost:8080/user/data">Moje dane</a>
-    </li>
-    <li>
-    <a href="http://localhost:8080/user/edit/password">Zmień hasło</a>
-    </li>
-    <li>
       <a href="http://localhost:8080/training/create">Stwórz trening</a>
     </li>
     <li>
       <a href="http://localhost:8080/user/favorite">Ulubione ćwiczenia</a>
+    </li>
+    <li>
+      <a href="http://localhost:8080/user/data">Moje dane</a>
+    </li>
+    <li>
+    <a href="http://localhost:8080/user/edit/password">Zmień hasło</a>
     </li>
   </ul>
 </div>

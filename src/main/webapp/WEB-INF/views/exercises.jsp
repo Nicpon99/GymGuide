@@ -38,7 +38,7 @@
                     </td>
                 </c:forEach>
                 <td>
-                    <a href="http://localhost:8080/exercises/description/${exercise.key.id}">Zobacz opis</a>
+                    <a href="http://localhost:8080/exercises/description/${musclePart.id}/${exercise.key.id}" style="color: rebeccapurple">Zobacz opis</a>
                 </td>
                 <td>
                     <a href="http://localhost:8080/exercises/like/${muscleId}/${exercise.key.id}" id="likeButton"></a>

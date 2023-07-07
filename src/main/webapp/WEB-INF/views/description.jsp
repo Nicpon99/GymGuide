@@ -7,6 +7,14 @@
 </head>
 <body>
 <%@include file="header.jsp"%>
+<br>
+<table>
+    <tr>
+        <td>
+            <a href="http://localhost:8080/exercises/${musclePart.id}">Powrót do: ${musclePart.name} - Lista ćwiczeń</a>
+        </td>
+    </tr>
+</table>
 
 <H1>${exercise.name}</H1>
 
@@ -49,17 +57,17 @@
     </tr>
     <tr>
         <td>
-            <a href="${exercise.link}" target="_blank">ZOBACZ FILM NA YOUTUBE</a>
+            <a href="${exercise.link}" target="_blank" style="color: blue">ZOBACZ FILM NA YOUTUBE</a>
         </td>
     </tr>
     <tr>
-        <td>
+        <td style="display: none">
             <div id="like">${like}</div>
         </td>
     </tr>
     <tr>
         <td>
-            <a href="http://localhost:8080/exercises/description/like/${exercise.id}" id="likeButton"></a>
+            <a href="http://localhost:8080/exercises/description/like/${musclePart.id}/${exercise.id}" id="likeButton"></a>
         </td>
     </tr>
 </table>

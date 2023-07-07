@@ -6,12 +6,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.coderslab.final_project.entity.Role;
 import pl.coderslab.final_project.entity.User;
+import pl.coderslab.final_project.exceptions.ValidationException;
 import pl.coderslab.final_project.repository.RoleRepository;
 import pl.coderslab.final_project.repository.UserRepository;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @AllArgsConstructor
@@ -44,6 +43,49 @@ public class UserServiceImpl implements UserService{
     public void editPassword(User user){
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.editPassword(user.getPassword(), user.getId());
+    }
+
+    @Override
+    public User registerUser(User user) throws ValidationException {
+
+        List<String> validationFailures = validate(user);
+        if (validationFailures.isEmpty()){
+            saveUser(user);
+            return user;
+        } else {
+            throw new ValidationException(validationFailures);
+        }
+
+    }
+
+    @Override
+    public User editUniqueUser(User user) throws ValidationException{
+        List<String> validationFailures = validate(user);
+        if (validationFailures.isEmpty()){
+            editUser(user);
+            return user;
+        } else {
+            throw new ValidationException(validationFailures);
+        }
+    }
+
+
+    @Override
+    public Optional<User> findByEmail(String email){
+        return userRepository.findUserByEmail(email);
+    }
+
+    private List<String> validate(User user){
+        Optional<User> byLogin = userRepository.findByUsername(user.getUsername());
+        Optional<User> byEmail = userRepository.findUserByEmail(user.getEmail());
+        if (byLogin.isPresent() && byEmail.isPresent()){
+            return Arrays.asList("Podana nazwa użytkownika jest już używana", "Podany adres e-mail jest już używany");
+        } else if (byLogin.isPresent() && byEmail.isEmpty()) {
+            return Arrays.asList("Podana nazwa użytkownika jest już używana");
+        } else if (byLogin.isEmpty() && byEmail.isPresent()) {
+            return Arrays.asList("Podany adres e-mail jest już używany");
+        }
+        return Collections.emptyList();
     }
 
 }

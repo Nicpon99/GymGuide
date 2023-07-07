@@ -11,7 +11,7 @@
     <%@include file="left-menu.jsp" %>
 
     <div class="content">
-
+    <h1>Moje dane</h1>
         <table>
             <tr>
                 <td>Adres email</td>
@@ -21,10 +21,14 @@
                 <td>Nazwa użytkownika</td>
                 <td>${user.username}</td>
             </tr>
+            <tr>
+                <td colspan="2">
+                    <div style="text-align: center;">
+                        <a href="http://localhost:8080/user/edit">Edytuj</a>
+                    </div>
+                </td>
+            </tr>
         </table>
-        <div style="text-align: center;">
-            <a href="http://localhost:8080/user/edit">Edytuj</a>
-        </div>
     </div>
 </div>
 

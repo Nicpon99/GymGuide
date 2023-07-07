@@ -27,37 +27,37 @@
     <table>
       <thead>
         <tr>
+          <th></th>
           <th>ĆWICZENIE</th>
           <th>MIĘŚNIE</th>
           <th>TUTORIAL</th>
           <th>ILOŚĆ SERII</th>
-          <th>KOLEJNOŚĆ WYKONYWANIA</th>
         </tr>
       </thead>
       <c:forEach items="${trainingWithExercises}" var="item">
         <tr>
           <c:forEach items="${item.value}" var="inner">
-          <td>
-            ${inner.key.name}
-          </td>
-          <td>
-            <ul>
-              <c:forEach items="${inner.value}" var="muscle">
-                <li>
-                  ${muscle}
-                </li>
-              </c:forEach>
-            </ul>
-          </td>
-          <td>
-            <a href="${inner.key.link}" target="_blank">ZOBACZ FILM NA YOUTUBE</a>
-          </td>
+            <td>
+                ${item.key.sequence}
+            </td>
+            <td>
+                ${inner.key.name}
+            </td>
+            <td>
+              <ul>
+                <c:forEach items="${inner.value}" var="muscle">
+                  <li>
+                      ${muscle}
+                  </li>
+                </c:forEach>
+              </ul>
+            </td>
+            <td>
+              <a href="${inner.key.link}" target="_blank" style="color: blue">ZOBACZ FILM NA YOUTUBE</a>
+            </td>
           </c:forEach>
           <td>
-            ${item.key.series}
-          </td>
-          <td>
-            ${item.key.sequence}
+              ${item.key.series}
           </td>
         </tr>
       </c:forEach>

@@ -17,7 +17,7 @@
             <table>
                 <tr>
                     <td>
-                        <div>EMAIL</div>
+                        <div>Adres e-mail</div>
                     </td>
                 </tr>
                 <tr>
@@ -27,7 +27,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <div>USERNAME</div>
+                        <div>Nazwa użytkownika</div>
                     </td>
                 </tr>
                 <tr>
@@ -37,10 +37,13 @@
                 <tr>
                     <td>
 
-                        <div><button type="submit">SAVE</button> </div>
+                        <div><button type="submit">Zapisz</button> </div>
                     </td>
                 </tr>
             </table>
+            <c:forEach items="${validation}" var="v">
+                <div class="error">${v}</div>
+            </c:forEach>
             <form:errors path="email" class="error" element="div"/>
             <form:errors path="username" class="error" element="div"/>
         </form:form>

@@ -66,9 +66,9 @@ public class ExerciseController {
         }
     }
 
-    @GetMapping("/exercises/description/{id}")
-    public String getExerciseDescription(@PathVariable("id") Long id, Model model){
-        Exercise exercise =  exerciseService.findById(id).orElse(null);
+    @GetMapping("/exercises/description/{muscleId}/{exerciseId}")
+    public String getExerciseDescription(@PathVariable("exerciseId") Long exerciseId, @PathVariable("muscleId") Long muscleId, Model model){
+        Exercise exercise =  exerciseService.findById(exerciseId).orElse(null);
         if (exercise != null){
             String muscles = exercise.getMuscles();
             List<String> musclesList = List.of(muscles.split(", "));
@@ -85,11 +85,20 @@ public class ExerciseController {
                 like = "true";
             }
 
+            MusclePart musclePart = musclePartService.findById(muscleId).orElse(null);
+            if (musclePart != null){
+                model.addAttribute("musclePart", musclePart);
+            } else {
+                return "error";
+            }
+
             model.addAttribute("description", descriptionList);
 
             model.addAttribute("exercise", exercise);
 
             model.addAttribute("like", like);
+
+
 
             return "description";
         } else {
@@ -119,21 +128,21 @@ public class ExerciseController {
         }
     }
 
-    @GetMapping("exercises/description/like/{id}")
-    public String likeExerciseFromDescription(@PathVariable("id") Long id, Principal principal){
+    @GetMapping("exercises/description/like/{muscleId}/{exerciseId}")
+    public String likeExerciseFromDescription(@PathVariable("exerciseId") Long exerciseId, @PathVariable("muscleId") Long muscleId, Principal principal){
         User user = userService.findByUserName(principal.getName()).orElse(null);
         if (user != null){
-            if (userExerciseService.findByExerciseIdAndUserId(id, user.getId()) == null){
+            if (userExerciseService.findByExerciseIdAndUserId(exerciseId, user.getId()) == null){
                 UserExercise userExercise = new UserExercise();
-                userExercise.setExercises_id(id);
+                userExercise.setExercises_id(exerciseId);
                 userExercise.setUsers_id(user.getId());
                 userExerciseService.save(userExercise);
-                exerciseService.increasePopularity(id);
-                return "redirect:/exercises/description/" + id;
+                exerciseService.increasePopularity(exerciseId);
+                return "redirect:/exercises/description/" + muscleId + "/" + exerciseId;
             } else {
-                userExerciseService.deleteById(userExerciseService.findByExerciseIdAndUserId(id, user.getId()).getId());
-                exerciseService.decreasePopularity(id);
-                return "redirect:/exercises/description/" + id;
+                userExerciseService.deleteById(userExerciseService.findByExerciseIdAndUserId(exerciseId, user.getId()).getId());
+                exerciseService.decreasePopularity(exerciseId);
+                return "redirect:/exercises/description/" + muscleId + "/" + exerciseId;
             }
 
         } else {

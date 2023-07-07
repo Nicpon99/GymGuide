@@ -17,7 +17,7 @@
         </tr>
         <tr>
             <td>
-                <div><form:input path="email"/></div>
+                <div><form:input path="email" id="email"/></div>
             </td>
         </tr>
         <tr>
@@ -27,7 +27,7 @@
         </tr>
         <tr>
             <td>
-                <div><form:input path="username"/></div>
+                <div><form:input path="username" id="username"/></div>
             </td>
         </tr>
         <tr>
@@ -65,6 +65,9 @@
             </td>
         </tr>
     </table>
+    <c:forEach items="${validation}" var="v">
+        <div class="error">${v}</div>
+    </c:forEach>
     <form:errors path="email" class="error" element="div"/>
     <form:errors path="username" class="error" element="div"/>
     <form:errors path="password" class="error" element="div"/>
