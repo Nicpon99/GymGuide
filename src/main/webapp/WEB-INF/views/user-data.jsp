@@ -14,17 +14,17 @@
     <h1>Moje dane</h1>
         <table>
             <tr>
-                <td>Adres email</td>
+                <td><strong>Adres email</strong></td>
                 <td>${user.email}</td>
             </tr>
             <tr>
-                <td>Nazwa użytkownika</td>
+                <td><strong>Nazwa użytkownika</strong></td>
                 <td>${user.username}</td>
             </tr>
             <tr>
                 <td colspan="2">
                     <div style="text-align: center;">
-                        <a href="http://localhost:8080/user/edit">Edytuj</a>
+                        <a href="http://localhost:8080/user/edit" style="color: rebeccapurple">Edytuj</a>
                     </div>
                 </td>
             </tr>

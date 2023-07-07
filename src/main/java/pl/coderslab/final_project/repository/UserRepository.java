@@ -25,4 +25,10 @@ public interface UserRepository extends JpaRepository<User, Long> {
     void editPassword(String password, Long id);
 
     Optional<User> findUserByEmail(String email);
+
+    @Query(value = "SELECT * FROM users WHERE username = ?1 AND id != ?2", nativeQuery = true)
+    Optional<User> findByUsernameWithoutLoggedInUser(String username, Long id);
+
+    @Query(value = "SELECT * FROM users WHERE email = ?1 AND id != ?2", nativeQuery = true)
+    Optional<User> findByEmailWithoutLoggedInUser(String email, Long id);
 }

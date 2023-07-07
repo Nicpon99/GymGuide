@@ -23,4 +23,8 @@ public interface UserService {
 
     public User editUniqueUser(User user) throws ValidationException;
 
+    public Optional<User> findByUsernameWithoutLoggedInUser(User user);
+
+    public Optional<User> findByEmailWithoutLoggedInUser(User user);
+
 }

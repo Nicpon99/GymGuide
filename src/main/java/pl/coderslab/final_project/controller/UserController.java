@@ -86,8 +86,8 @@ public class UserController {
         }
     }
 
-    @GetMapping("user/edit")
-    public String editUser(Model model, Principal principal) {
+    @GetMapping("/user/edit")
+    public String editUser(Model model, Principal principal){
         User user = userService.findByUserName(principal.getName()).orElse(null);
         if (user != null) {
             model.addAttribute("user", user);
@@ -96,6 +96,7 @@ public class UserController {
             return "error";
         }
     }
+
 
     @PostMapping("/user/edit")
     public String updateUser(@Valid User user,  BindingResult result, Model model){
