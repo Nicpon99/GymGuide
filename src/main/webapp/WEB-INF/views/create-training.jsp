@@ -1,6 +1,6 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
     <title>Create your training</title>
@@ -11,6 +11,7 @@
 <div class="container">
     <%@include file="left-menu.jsp" %>
     <div class="content">
+        <h1>Stwórz trening</h1>
         <form:form method="POST" modelAttribute="training">
             <table>
                 <tr>
@@ -36,7 +37,9 @@
                 </tr>
                 <tr>
                     <td>
-                        <div><button type="submit">Dalej</button></div>
+                        <div>
+                            <button type="submit">Dalej</button>
+                        </div>
                     </td>
                 </tr>
             </table>

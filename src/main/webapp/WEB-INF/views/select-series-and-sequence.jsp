@@ -49,7 +49,7 @@
                 <tr>
                     <td colspan="3">
                         <div style="display: block" id="button">
-                        <button type="submit">Zapisz trening</button>
+                            <button type="submit">Zapisz trening</button>
                         </div>
                         <div style="display: none" id="error-series" class="error">
                             Żadna wartość "Ilość serii" nie może być pusta
@@ -63,7 +63,7 @@
         </form>
     </div>
 </div>
-<script src="/js/check-series.js" ></script>
-<script src="/js/check-sequence.js" ></script>
+<script src="/js/check-series.js"></script>
+<script src="/js/check-sequence.js"></script>
 </body>
 </html>

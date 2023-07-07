@@ -11,7 +11,7 @@
     <%@include file="left-menu.jsp" %>
 
     <div class="content">
-    <h1>Moje dane</h1>
+        <h1>Moje dane</h1>
         <table>
             <tr>
                 <td><strong>Adres email</strong></td>

@@ -72,6 +72,6 @@
     <form:errors path="username" class="error" element="div"/>
     <form:errors path="password" class="error" element="div"/>
 </form:form>
-<script src="/js/check-password.js" ></script>
+<script src="/js/check-password.js"></script>
 </body>
 </html>

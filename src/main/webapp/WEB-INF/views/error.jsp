@@ -6,14 +6,14 @@
     <link rel="stylesheet" href="<c:url value='/css/style.css'/>">
 </head>
 <body>
-    <h1>Wystąpił nieoczekiwany błąd.
-        Kliknij poniższy przycisk, aby wrócić na stronę główną.</h1>
-    <table>
-        <tr>
-            <td>
-                <a href="http://localhost:8080/">STRONA GŁÓWNA</a>
-            </td>
-        </tr>
-    </table>
+<h1>Wystąpił nieoczekiwany błąd.
+    Kliknij poniższy przycisk, aby wrócić na stronę główną.</h1>
+<table>
+    <tr>
+        <td>
+            <a href="http://localhost:8080/">STRONA GŁÓWNA</a>
+        </td>
+    </tr>
+</table>
 </body>
 </html>
