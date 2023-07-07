@@ -1,16 +1,19 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: konrad
-  Date: 02.07.2023
-  Time: 13:03
-  To change this template use File | Settings | File Templates.
---%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>ERROR</title>
+    <link rel="stylesheet" href="<c:url value='/css/style.css'/>">
 </head>
 <body>
-    <p style="color: red">ERROR</p>
+    <h1>Wystąpił nieoczekiwany błąd.
+        Kliknij poniższy przycisk, aby wrócić na stronę główną.</h1>
+    <table>
+        <tr>
+            <td>
+                <a href="http://localhost:8080/">STRONA GŁÓWNA</a>
+            </td>
+        </tr>
+    </table>
 </body>
 </html>
