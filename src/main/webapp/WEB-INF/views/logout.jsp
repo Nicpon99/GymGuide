@@ -7,7 +7,7 @@
 </head>
 <body>
 <%@include file="header.jsp" %>
-<h1>Czy na pewno chcesz się wylogować?</h1>
+<h2>Czy na pewno chcesz się wylogować?</h2>
 <form action="<c:url value="/logout"/>" method="post">
     <table>
         <tr>

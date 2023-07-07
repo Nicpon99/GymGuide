@@ -24,7 +24,7 @@
                                 ${exercise.name}
                         </td>
                         <td>
-                            <a href="http://localhost:8080/exercises/description/${exercise.id}"
+                            <a href="http://localhost:8080/exercises/description/${item.key.id}/${exercise.id}"
                                style="color: rebeccapurple">Zobacz opis</a>
                         </td>
                         <td>

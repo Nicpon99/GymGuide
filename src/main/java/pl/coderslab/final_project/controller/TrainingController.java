@@ -119,6 +119,12 @@ public class TrainingController {
         return "training-description";
     }
 
+    @GetMapping("/training/delete/warning/{trainingId}")
+    public String deleteTrainingWarning(@PathVariable("trainingId") Long trainingId, Model model){
+        model.addAttribute("trainingId", trainingId);
+        return "user-delete-warning";
+    }
+
     @GetMapping("/training/delete/{trainingId}")
     public String deleteTraining(@PathVariable("trainingId") Long trainingId){
         trainingExerciseService.deleteByTrainingId(trainingId);

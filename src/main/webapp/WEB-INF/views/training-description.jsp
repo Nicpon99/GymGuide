@@ -66,7 +66,7 @@
         <table>
             <tr>
                 <td>
-                    <a href="http://localhost:8080/training/delete/${training.id}" style="color: red">Usuń trening</a>
+                    <a href="http://localhost:8080/training/delete/warning/${training.id}" style="color: red">Usuń trening</a>
                 </td>
             </tr>
         </table>

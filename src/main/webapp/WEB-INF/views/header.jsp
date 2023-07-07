@@ -5,7 +5,7 @@
     <table>
         <tr>
             <td>
-                <a href="http://localhost:8080/">O aplikacji</a>
+                <a href="http://localhost:8080/info">O aplikacji</a>
             </td>
             <sec:authorize access="isAnonymous()">
                 <td>

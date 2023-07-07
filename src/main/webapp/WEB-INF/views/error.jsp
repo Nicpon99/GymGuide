@@ -6,8 +6,8 @@
     <link rel="stylesheet" href="<c:url value='/css/style.css'/>">
 </head>
 <body>
-<h1>Wystąpił nieoczekiwany błąd.
-    Kliknij poniższy przycisk, aby wrócić na stronę główną.</h1>
+<h2>Wystąpił nieoczekiwany błąd.
+    Kliknij poniższy przycisk, aby wrócić na stronę główną.</h2>
 <table>
     <tr>
         <td>

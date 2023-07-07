@@ -11,7 +11,7 @@
 <table>
     <tr>
         <td>
-            <a href="http://localhost:8080/exercises/${musclePart.id}">Powrót do: ${musclePart.name} - Lista ćwiczeń</a>
+            <a href="http://localhost:8080/exercises/${musclePart.id}">${musclePart.name} - Lista ćwiczeń</a>
         </td>
     </tr>
 </table>
