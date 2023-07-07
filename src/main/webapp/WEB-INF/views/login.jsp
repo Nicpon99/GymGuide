@@ -11,7 +11,7 @@
   <table>
     <tr>
       <td>
-        USERNAME
+        Nazwa użytkownika
       </td>
     </tr>
     <tr>
@@ -21,7 +21,7 @@
     </tr>
     <tr>
       <td>
-        PASSWORD
+        Hasło
       </td>
     </tr>
     <tr>

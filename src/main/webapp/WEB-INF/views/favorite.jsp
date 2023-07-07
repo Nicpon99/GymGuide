@@ -1,4 +1,4 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -11,22 +11,32 @@
     <%@include file="left-menu.jsp" %>
     <div class="content">
         <h1>Ulubione ćwiczenia</h1>
-        <table>
-            <c:forEach items="${exercises}" var="exercise">
+        <c:forEach items="${muscleWithExercises}" var="item">
+            <table>
+            <tr>
+                <td colspan="3">
+                    <strong>${item.key.name}</strong>
+                </td>
+            </tr>
+            <c:forEach items="${item.value}" var="exercise">
                 <tr>
                     <td>
-                        ${exercise.name}
+                            ${exercise.name}
                     </td>
                     <td>
-                        <a href="http://localhost:8080/exercises/description/${exercise.id}" style="color: rebeccapurple">Zobacz opis</a>
+                        <a href="http://localhost:8080/exercises/description/${exercise.id}"
+                           style="color: rebeccapurple">Zobacz opis</a>
                     </td>
                     <td>
-                        <a href="http://localhost:8080/user/favorite/delete/${exercise.id}" style="color: red">Usuń z ulubionych</a>
+                        <a href="http://localhost:8080/user/favorite/delete/${exercise.id}" style="color: red">Usuń
+                            z ulubionych</a>
                     </td>
                 </tr>
             </c:forEach>
-        </table>
-
+            </table>
+            <br>
+            <br>
+        </c:forEach>
     </div>
 </div>
 </body>

@@ -8,16 +8,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import pl.coderslab.final_project.entity.Exercise;
+import pl.coderslab.final_project.entity.MusclePart;
 import pl.coderslab.final_project.entity.User;
 import pl.coderslab.final_project.entity.UserExercise;
 import pl.coderslab.final_project.exceptions.ValidationException;
-import pl.coderslab.final_project.service.ExerciseService;
-import pl.coderslab.final_project.service.TrainingService;
-import pl.coderslab.final_project.service.UserExerciseService;
-import pl.coderslab.final_project.service.UserService;
+import pl.coderslab.final_project.service.*;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 
@@ -32,11 +33,14 @@ public class UserController {
 
     private TrainingService trainingService;
 
-    public UserController(UserService userService, ExerciseService exerciseService, UserExerciseService userExerciseService, TrainingService trainingService) {
+    private MusclePartService musclePartService;
+
+    public UserController(UserService userService, ExerciseService exerciseService, UserExerciseService userExerciseService, TrainingService trainingService, MusclePartService musclePartService) {
         this.userService = userService;
         this.exerciseService = exerciseService;
         this.userExerciseService = userExerciseService;
         this.trainingService = trainingService;
+        this.musclePartService = musclePartService;
     }
 
     @GetMapping("/register")
@@ -145,7 +149,18 @@ public class UserController {
     public String getFavoriteExercises(Model model, Principal principal) {
         User user = userService.findByUserName(principal.getName()).orElse(null);
         if (user != null) {
-            model.addAttribute("exercises", exerciseService.findExercisesByUser(user));
+            List<MusclePart> muscleParts = musclePartService.findAllSorted();
+            LinkedHashMap<MusclePart, List<Exercise>> musclesWithExercises = new LinkedHashMap<>();
+
+            for (MusclePart musclePart : muscleParts) {
+                List<Exercise> exercises = exerciseService.findByMusclePartsAndUser(musclePart, user);
+                if (!exercises.isEmpty()){
+                    musclesWithExercises.put(musclePart, exercises);
+                }
+            }
+
+            model.addAttribute("muscleWithExercises", musclesWithExercises);
+
             return "favorite";
         } else {
             return "error";
