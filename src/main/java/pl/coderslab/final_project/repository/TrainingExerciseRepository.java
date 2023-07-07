@@ -19,4 +19,10 @@ public interface TrainingExerciseRepository extends JpaRepository<TrainingExerci
 
     @Query(value = "SELECT * FROM trainings_exercises WHERE trainings_id = ?1 ORDER BY sequence", nativeQuery = true)
     List<TrainingExercise> findByTrainingId(Long id);
+
+    @Modifying
+    @Transactional
+    @Query(value = "DELETE FROM trainings_exercises WHERE trainings_id = ?1", nativeQuery = true)
+    void deleteByTrainingId(Long trainingId);
+
 }

@@ -88,8 +88,6 @@ public class TrainingController {
                 return "error";
             }
         }
-
-
         model.addAttribute("trainingWithExercises", trainingWithExercises);
         model.addAttribute("mapLength", trainingWithExercises.size());
         return "select-series-and-sequence";
@@ -98,8 +96,6 @@ public class TrainingController {
     @GetMapping("/training/save")
     public String saveTraining(@RequestParam("trainingExerciseIds") Long[] trainingExerciseIds,
                                @RequestParam("series") String[] series, @RequestParam("sequence") String[] sequence){
-
-
         for (int i = 0; i < trainingExerciseIds.length; i++){
             trainingExerciseService.saveSeriesAndSequence(Integer.parseInt(series[i]), Integer.parseInt(sequence[i]), trainingExerciseIds[i]);
         }
@@ -121,6 +117,13 @@ public class TrainingController {
         model.addAttribute("training", training);
         model.addAttribute("trainingWithExercises", trainingWithExercises);
         return "training-description";
+    }
+
+    @GetMapping("/training/delete/{trainingId}")
+    public String deleteTraining(@PathVariable("trainingId") Long trainingId){
+        trainingExerciseService.deleteByTrainingId(trainingId);
+        trainingService.deleteById(trainingId);
+        return "redirect:/user/profile";
     }
 
 }

@@ -40,4 +40,8 @@ public class TrainingExerciseService {
         return trainingExerciseRepository.findByTrainingId(id);
     }
 
+    public void deleteByTrainingId(Long trainingId){
+        trainingExerciseRepository.deleteByTrainingId(trainingId);
+    }
+
 }
