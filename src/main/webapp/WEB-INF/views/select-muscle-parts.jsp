@@ -11,12 +11,8 @@
     <%@include file="left-menu.jsp" %>
     <div class="content">
         <form method="GET" action="http://localhost:8080/training/create/${trainingId}/muscleParts/added">
+            <h2>Zaznacz partie mięśniowe, których ma dotyczyć Twój trening</h2>
             <table>
-                <tr>
-                    <td>
-                        <div>Zaznacz partie mięśniowe, których ma dotyczyć Twój trening</div>
-                    </td>
-                </tr>
                 <tr>
                     <td>
                         <c:forEach items="${muscleParts}" var="musclePart">

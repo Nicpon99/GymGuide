@@ -10,7 +10,7 @@
 <div class="container">
     <%@include file="left-menu.jsp" %>
     <div class="content">
-        <h1>Wybierz ćwiczenia spośród swoich ulubionych, które chcesz zamieścić w treningu</h1>
+        <h2>Wybierz ćwiczenia spośród swoich ulubionych, które chcesz zamieścić w treningu</h2>
         <form method="GET" action="/training/create/${trainingId}/muscleParts/added/exercises">
             <c:forEach items="${exercises}" var="exercise">
                 <table>

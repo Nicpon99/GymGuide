@@ -10,7 +10,7 @@
 <div class="container">
     <%@include file="left-menu.jsp" %>
     <div class="content">
-        <h1>Określ liczbę serii poszczególnych ćwiczeń oraz kolejność wykonywania</h1>
+        <h2>Określ liczbę serii poszczególnych ćwiczeń oraz kolejność wykonywania</h2>
         <form method="GET" action="http://localhost:8080/training/save">
             <table>
                 <thead>
