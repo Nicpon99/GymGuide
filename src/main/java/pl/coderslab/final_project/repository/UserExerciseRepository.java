@@ -16,4 +16,6 @@ public interface UserExerciseRepository extends JpaRepository<UserExercise, Long
 
     @Query(value = "SELECT * FROM users_exercises WHERE exercises_id = ?1", nativeQuery = true)
     Optional<UserExercise> findByExerciseId(Long exerciseId);
+
+
 }

@@ -32,7 +32,7 @@ public class ExerciseController {
     private UserExerciseService userExerciseService;
 
     @GetMapping("/exercises/{id}")
-    public String getExercisesByMuscle(@PathVariable("id") Long id, Model model){
+    public String getExercisesByMuscle(@PathVariable("id") Long id, Model model, Principal principal){
         MusclePart musclePart = musclePartService.findById(id).orElse(null);
         if (musclePart != null){
             List<Exercise> exercises = exerciseService.findExercisesByMusclePart(musclePart);
@@ -44,8 +44,9 @@ public class ExerciseController {
                 String muscles = exercise.getMuscles();
                 String[] musclesArray = muscles.split(", ");
 
+                User user = userService.findByUserName(principal.getName()).orElse(null);
                 String like = "";
-                UserExercise userExercise = userExerciseService.findByExerciseId(exercise.getId()).orElse(null);
+                UserExercise userExercise = userExerciseService.findByExerciseIdAndUserId(exercise.getId(), user.getId());
                 if (userExercise == null){
                     like = "false";
                 } else {
@@ -67,7 +68,7 @@ public class ExerciseController {
     }
 
     @GetMapping("/exercises/description/{muscleId}/{exerciseId}")
-    public String getExerciseDescription(@PathVariable("exerciseId") Long exerciseId, @PathVariable("muscleId") Long muscleId, Model model){
+    public String getExerciseDescription(@PathVariable("exerciseId") Long exerciseId, @PathVariable("muscleId") Long muscleId, Model model, Principal principal){
         Exercise exercise =  exerciseService.findById(exerciseId).orElse(null);
         if (exercise != null){
             String muscles = exercise.getMuscles();
@@ -77,8 +78,9 @@ public class ExerciseController {
             String description = exercise.getDescription();
             List<String> descriptionList = List.of(description.split("\\. "));
 
+            User user = userService.findByUserName(principal.getName()).orElse(null);
             String like = "";
-            UserExercise userExercise = userExerciseService.findByExerciseId(exercise.getId()).orElse(null);
+            UserExercise userExercise = userExerciseService.findByExerciseIdAndUserId(exercise.getId(), user.getId());
             if (userExercise == null){
                 like = "false";
             } else {

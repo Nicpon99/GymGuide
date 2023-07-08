@@ -40,4 +40,5 @@ public class UserExerciseService {
         return userExerciseRepository.findByExerciseId(exerciseId);
     }
 
+
 }
